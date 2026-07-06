@@ -9,22 +9,24 @@ title: Home
 ## About writer
 
 <p class="intro-text">
-Majoring in Pharmacy, College of Pharmacy, Seoul National University(2024.03~) 
+- Majoring in Pharmacy, College of Pharmacy, Seoul National University(2024.03~) 
 </p>
 
 <p class="intro-text">
-Submajoring in Mathematics, College of Mathematics, Seoul National University(2025.09~)
+- Submajoring in Mathematics, College of Mathematics, Seoul National University(2025.09~)
 </p>
 
 <p class="intro-text">
-Interest: optimization theory, Pharmacodynamics, drug molecular design etc.
+- Interest: optimization theory, Pharmacodynamics, drug molecular design etc.
 </p>
 
 <p class="intro-text">
-Big fan of Arsenal FC and the Mercedes-AMG Petronas Formula One Team.
+- Big fan of Arsenal FC and the Mercedes-AMG Petronas Formula One Team.
 </p>
 
 </div>
+
+<div class="section-card">
 
 ## Recent Posts
 
@@ -39,4 +41,10 @@ Big fan of Arsenal FC and the Mercedes-AMG Petronas Formula One Team.
 
 </div>
 
-<div class="section-card">
+## Notes
+
+<div class="empty-note">
+아직 작성한 노트가 없습니다.
+</div>
+
+</div>
