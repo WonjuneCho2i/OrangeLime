@@ -1,8 +1,6 @@
 ---
-title: OrangeLime
+title: WONJUNE CHOI's BLOG
 ---
-
-# OrangeLime
 
 수학을 공부하며 남기는 하나의 기록입니다.
 
