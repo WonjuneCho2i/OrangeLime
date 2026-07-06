@@ -40,11 +40,3 @@ title: Home
 </div>
 
 </div>
-
-## Notes
-
-<div class="empty-note">
-아직 작성한 노트가 없습니다.
-</div>
-
-</div>
