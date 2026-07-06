@@ -4,7 +4,11 @@ title: Home
 
 <img src="assets/profile.jpeg" class="home-banner" />
 
-수학을 공부하며 남기는 하나의 기록입니다.
+Undergraduate student majoring in Pharmacy at the College of Pharmacy, Seoul National University, with a minor in Mathematics.
+
+Interested in optimization theory, protein dynamics, and drug molecular design.
+
+Big fan of Arsenal FC and the Mercedes-AMG Petronas Formula One Team.
 
 ## Posts
 
