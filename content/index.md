@@ -40,11 +40,3 @@ Big fan of Arsenal FC and the Mercedes-AMG Petronas Formula One Team.
 </div>
 
 <div class="section-card">
-
-## Recent Notes
-
-<div class="empty-note">
-아직 작성한 노트가 없습니다.
-</div>
-
-</div>
