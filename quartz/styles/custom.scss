@@ -1,3 +1,11 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+.home-banner {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+}
