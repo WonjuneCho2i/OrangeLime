@@ -4,7 +4,7 @@ title: OrangeLime
 
 # OrangeLime
 
-수학을 공부하며 남기는 기록입니다.
+수학을 공부하며 남기는 하나의 기록입니다.
 
 ## Posts
 
