@@ -2,7 +2,10 @@
 title: Home
 ---
 
-<img src="assets/profile.jpeg" class="home-banner" />
+Hello, I am Wonjune Choi.
+Thank you for visiting my homepage. This website serves as a personal archive of my academic journey, learning experiences, and selected reflections. It is intended to share my ongoing studies, interests, and thoughts in a structured and professional manner.
+For any inquiries or further communication, please feel free to contact me via e-mail: **[wjchoi1229@snu.ac.kr](mailto:wjchoi1229@snu.ac.kr)**.
+
 
 <div class="intro-card">
 
