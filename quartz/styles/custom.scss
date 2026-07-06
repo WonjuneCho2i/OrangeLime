@@ -6,6 +6,28 @@
   height: 300px;
   object-fit: cover;
   object-position: center 55%;
-  border-radius: 16px;
-  margin-bottom: 1.5rem;
+  border-radius: 18px;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.intro-card {
+  padding: 1.5rem 1.75rem;
+  margin: 1.5rem 0 2rem 0;
+  border-radius: 18px;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.intro-card h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.35rem;
+}
+
+.intro-text {
+  text-align: justify;
+  line-height: 1.8;
+  margin: 0.75rem 0;
 }
