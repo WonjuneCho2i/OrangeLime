@@ -83,3 +83,16 @@
   font-size: 0.92rem;
   line-height: 1.5;
 }
+
+@media all and (max-width: 1400px) {
+  .right {
+    display: none;
+  }
+
+  .page {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 800px)
+      minmax(0, 1fr);
+  }
+}
