@@ -36,8 +36,8 @@ For any inquiries or further communication, please feel free to contact me via e
 <div class="link-card-list">
 
 <a class="link-card" href="./Posts/first-math-note">
-  <div class="link-card-title">첫 번째 수학 글</div>
-  <div class="link-card-desc">A first test post with LaTeX equations.</div>
+  <div class="link-card-title"> Linear Programming과 Simplex Method </div>
+  <div class="link-card-desc">This article provides a concise introduction to linear programming and the simplex method, covering standard-form transformations, dictionary-based pivot operations, two-phase initialization, and the diagnosis of infeasible and unbounded cases through detailed illustrative examples.</div>
 </a>
 
 </div>
