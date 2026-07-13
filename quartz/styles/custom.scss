@@ -92,30 +92,33 @@
   column-gap: 2rem;
 }
 
-
-/* Right sidebar: single page scroll, no nested scroll */
+/* Right sidebar stays visible and scrolls internally */
 .right {
-  position: static !important;
-  top: auto !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
+  position: sticky !important;
+  top: 0;
+  align-self: start;
+
+  height: 100vh;
+  max-height: 100vh;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
   padding-bottom: 4rem;
   box-sizing: border-box;
 }
 
-/* Disable internal scrolling inside TOC */
+/* Remove nested scrolling only from the TOC itself */
 .right .toc,
 .right .toc-content,
-.right .toc .overflow,
-.right .overflow {
-  height: auto !important;
+.right .toc .overflow {
   max-height: none !important;
+  height: auto !important;
   overflow: visible !important;
 }
 
-/* Prevent sidebar components from clipping */
+/* Keep spacing between sidebar widgets */
 .right > * {
-  max-height: none !important;
-  overflow: visible !important;
+  margin-bottom: 1.5rem;
 }
+
