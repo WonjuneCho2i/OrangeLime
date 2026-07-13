@@ -93,16 +93,29 @@
 }
 
 
-
+/* Right sidebar: single page scroll, no nested scroll */
 .right {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-  padding-bottom: 5rem;
+  position: static !important;
+  top: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-bottom: 4rem;
   box-sizing: border-box;
 }
 
-.right .toc {
-  max-height: none;
+/* Disable internal scrolling inside TOC */
+.right .toc,
+.right .toc-content,
+.right .toc .overflow,
+.right .overflow {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Prevent sidebar components from clipping */
+.right > * {
+  max-height: none !important;
+  overflow: visible !important;
 }
