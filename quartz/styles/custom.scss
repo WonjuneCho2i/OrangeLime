@@ -92,7 +92,6 @@
   column-gap: 2rem;
 }
 
-/* Right sidebar stays visible and scrolls internally */
 .right {
   position: sticky !important;
   top: 0;
@@ -108,17 +107,14 @@
   box-sizing: border-box;
 }
 
-/* Remove nested scrolling only from the TOC itself */
-.right .toc,
-.right .toc-content,
-.right .toc .overflow {
-  max-height: none !important;
-  height: auto !important;
-  overflow: visible !important;
-}
-
-/* Keep spacing between sidebar widgets */
-.right > * {
+.right .toc {
   margin-bottom: 1.5rem;
 }
 
+.right .backlinks,
+.right [class*="backlink"] {
+  position: relative;
+  display: block;
+  clear: both;
+  margin-top: 1.5rem;
+}
