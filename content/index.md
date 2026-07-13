@@ -34,8 +34,7 @@ For any inquiries or further communication, please feel free to contact me via e
 ## Recent Posts
 
 <div class="link-card-list">
-
-<a class="link-card" href="./Posts/Linear Programming-Simplex Method">
+<a class="link-card" href="./posts/linear-programming-simplex-method">
   <div class="link-card-title"> Linear Programming과 Simplex Method </div>
   <div class="link-card-desc">This article provides a concise introduction to linear programming and the simplex method, covering standard-form transformations, dictionary-based pivot operations, two-phase initialization, and the diagnosis of infeasible and unbounded cases through detailed illustrative examples.</div>
 </a>
