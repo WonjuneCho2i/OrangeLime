@@ -2,8 +2,8 @@
 title: Linear Programming과 Simplex Method
 tags:
   - math
-  - optimization
-  - linear-programming
+  - optimization theory
+  - linear programming(LP)
 ---
 
 # Linear Programming과 Simplex Method
