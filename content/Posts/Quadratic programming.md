@@ -268,12 +268,17 @@ $$
 꼴로 쓸 수 있으므로 QP이다.
 
 ---
-
 ## 2. Example: support vector machine
 
-두 번째 예시는 support vector machine, 줄여서 SVM이다.
+두 번째 예시는 support vector machine, 줄여서 SVM이라고 흔히 부른다.
 
-SVM은 classification 문제에서 자주 등장한다. 데이터가 $(x_i,y_i)$, $i=1,\dots,n$으로 주어졌다고 하자. 여기서 $y_i\in\{-1,1\}$이다.
+SVM은 Data classification 문제에서 자주 등장한다. 데이터가 $(x_i,y_i)$, $i=1,\dots,n$으로 주어졌다고 하자. 여기서 $x_i$는 feature vector이고,
+
+$$
+y_i\in\{-1,1\}
+$$
+
+이다.
 
 선형 SVM에서는 다음과 같은 함수를 사용한다.
 
@@ -281,7 +286,153 @@ $$
 f(x)=w^\top x-b.
 $$
 
-이때 soft-margin SVM은 다음과 같은 optimization problem으로 표현할 수 있다.
+이때 decision boundary는
+
+$$
+w^\top x-b=0
+$$
+
+이다. 즉, $w^\top x-b$의 부호에 따라 class를 나눈다.
+
+$$
+w^\top x-b\ge0
+$$
+
+이면 $+1$로 분류하고,
+
+$$
+w^\top x-b<0
+$$
+
+이면 $-1$로 분류한다.
+
+---
+
+### 2.1 Margin의 의미
+
+데이터 $(x_i,y_i)$가 올바르게 분류되었는지는
+
+$$
+y_i(w^\top x_i-b)
+$$
+
+를 보면 알 수 있다.
+
+만약 $y_i=1$이면 올바른 분류를 위해
+
+$$
+w^\top x_i-b>0
+$$
+
+이어야 한다. 이 경우
+
+$$
+y_i(w^\top x_i-b)>0
+$$
+
+이다.
+
+반대로 $y_i=-1$이면 올바른 분류를 위해
+
+$$
+w^\top x_i-b<0
+$$
+
+이어야 한다. 이때도
+
+$$
+y_i(w^\top x_i-b)>0
+$$
+
+이다.
+
+따라서 두 경우 모두
+
+$$
+y_i(w^\top x_i-b)>0
+$$
+
+이면 올바르게 분류된 것이다.
+
+SVM은 여기서 한 단계 더 나아간다. 단순히 올바르게 분류하는 것뿐 아니라, decision boundary에서 충분히 멀리 떨어져 있기를 원한다. 이를 다음과 같이 표현한다.
+
+$$
+y_i(w^\top x_i-b)\ge1.
+$$
+
+이 값
+
+$$
+y_i(w^\top x_i-b)
+$$
+
+을 margin이라고 생각할 수 있다.
+
+margin이 1 이상이면 충분히 안정적으로 분류된 것이고, margin이 1보다 작으면 decision boundary에 너무 가까이 있거나 잘못 분류된 것이다.
+
+---
+
+### 2.2 Hinge loss가 나오는 이유
+
+이제 하나의 데이터가 margin 조건을 얼마나 위반하는지 측정하고 싶다.
+
+이상적으로는
+
+$$
+y_i(w^\top x_i-b)\ge1
+$$
+
+이면 된다. 이 경우에는 penalty를 줄 필요가 없다.
+
+반대로
+
+$$
+y_i(w^\top x_i-b)<1
+$$
+
+이면 margin이 부족하다. 이때 부족한 정도는
+
+$$
+1-y_i(w^\top x_i-b)
+$$
+
+이다.
+
+따라서 하나의 데이터에 대한 loss를 다음과 같이 정의할 수 있다.
+
+$$
+\max\{0,1-y_i(w^\top x_i-b)\}.
+$$
+
+이것이 hinge loss이다.
+
+margin이 1 이상이면
+
+$$
+1-y_i(w^\top x_i-b)\le0
+$$
+
+이므로 hinge loss는 0이다. 즉, 이미 충분히 잘 분류되었으므로 penalty를 주지 않는다.
+
+반면 margin이 1보다 작으면 hinge loss는 양수가 되고, margin이 부족한 만큼 penalty가 생긴다.
+
+---
+
+### 2.3 Soft-margin SVM
+
+Soft-margin SVM은 다음 두 가지를 동시에 고려한다.
+
+첫째, margin이 큰 단순한 classifier를 만들고 싶다. 이를 위해 regularization term
+
+$$
+\lambda\|w\|_2^2
+$$
+
+을 사용한다.
+
+둘째, 각 데이터가 margin 조건을 위반하면 penalty를 주고 싶다. 이를 위해 hinge loss를 더한다.
+
+따라서 soft-margin SVM은 다음 optimization problem으로 표현된다.
 
 $$
 \min_{w,b}
@@ -290,21 +441,19 @@ $$
 \max\{0,1-y_i(w^\top x_i-b)\}.
 $$
 
-첫 번째 항 $\lambda\|w\|_2^2$은 regularization term이다. 두 번째 항
+첫 번째 항 $\lambda\|w\|_2^2$는 quadratic term이다. 두 번째 항은 각 데이터의 hinge loss 평균이다.
 
-$$
-\max\{0,1-y_i(w^\top x_i-b)\}
-$$
+하지만 이 식은 max가 들어 있으므로 아직 QP 일반형처럼 보이지 않는다. 이를 QP로 바꾸기 위해 auxiliary variable $t_1,\dots,t_n$을 도입한다.
 
-은 hinge loss이다.
-
-그런데 이 식에는 max가 들어 있으므로 바로 QP 일반형처럼 보이지 않는다. 이를 QP로 바꾸기 위해 auxiliary variable $t_1,\dots,t_n$을 도입한다.
+각 $t_i$가 $i$번째 데이터의 hinge loss를 대신한다고 생각하자. 즉,
 
 $$
 t_i\ge \max\{0,1-y_i(w^\top x_i-b)\}
 $$
 
-가 되도록 하면 된다. 이는 다음 두 조건과 같다.
+가 되도록 만들면 된다.
+
+이 조건은 다음 두 조건과 같다.
 
 $$
 t_i\ge 1-y_i(w^\top x_i-b),
@@ -331,17 +480,17 @@ $$
 첫 번째 제약조건을 정리하면
 
 $$
-y_i x_i^\top w-y_i b+t_i\ge 1
+y_i x_i^\top w-y_i b+t_i\ge1
 $$
 
-이다. 따라서 SVM은
+이다. 따라서
 
 $$
 \begin{aligned}
 \text{minimize} \quad
 & \lambda\|w\|_2^2+\frac1n\sum_{i=1}^n t_i\\
 \text{subject to} \quad
-& y_i x_i^\top w-y_i b+t_i\ge 1,
+& y_i x_i^\top w-y_i b+t_i\ge1,
 \quad i=1,\dots,n,\\
 & t_i\ge0,
 \quad i=1,\dots,n.
@@ -350,11 +499,11 @@ $$
 
 이 된다.
 
-목적함수에는 $\|w\|_2^2$이라는 quadratic term이 있고, 제약조건은 모두 $w,b,t_i$에 대한 linear inequality이다. 따라서 SVM은 QP이다.
+목적함수에는 $\lambda\|w\|_2^2$라는 quadratic term이 있고, 제약조건은 모두 $w,b,t_i$에 대한 linear inequality이다. 따라서 SVM은 QP이다.
 
 ---
 
-### 2.1 Numerical example
+### 2.4 Numerical example
 
 간단하게 1-dimensional data 5개를 보자.
 
@@ -449,7 +598,7 @@ $$
 \end{aligned}
 $$
 
-이제 이 문제를 $Q,p,A,b$로 직접 써보자.
+이제 이 문제를 QP 일반형의 $Q,p,A,b$로 직접 써보자.
 
 optimization variable은
 
@@ -474,7 +623,15 @@ $$
 0.1w^2+\frac15(t_1+t_2+t_3+t_4+t_5)
 $$
 
-이다. QP 일반형의 목적함수 $\frac12 z^\top Qz+p^\top z$와 비교하면, 이차항은 $w^2$에만 존재한다. 따라서
+이다. QP 일반형의 목적함수
+
+$$
+\frac12 z^\top Qz+p^\top z
+$$
+
+와 비교하면, 이차항은 $w^2$에만 존재한다.
+
+따라서
 
 $$
 \frac12 Q_{11}w^2=0.1w^2
@@ -647,7 +804,19 @@ $$
 \min_\beta \frac1n\|y-X\beta\|_2^2
 $$
 
-이다. LASSO는 여기에 $\ell_1$-penalty를 추가한다.
+이다.
+
+여기서 $X$는 data matrix이고, $y$는 response vector이다. $\beta$는 우리가 찾고 싶은 regression coefficient vector이다.
+
+least squares는 prediction error를 줄이는 방향으로 $\beta$를 선택한다. 즉,
+
+$$
+\|y-X\beta\|_2^2
+$$
+
+를 작게 만드는 $\beta$를 찾는다.
+
+LASSO는 여기에 $\ell_1$-penalty를 추가한다.
 
 $$
 \min_\beta
@@ -664,11 +833,97 @@ $$
 
 이다.
 
-LASSO가 QP처럼 바로 보이지 않는 이유는 absolute value가 들어 있기 때문이다. 하지만 auxiliary variable을 도입하면 $\ell_1$-penalty를 linear constraint로 표현할 수 있다.
+즉, LASSO는 다음 두 가지를 동시에 고려한다.
+
+$$
+\text{prediction error}+\text{coefficient penalty}.
+$$
+
+첫 번째 항은 data를 잘 설명하게 만들고, 두 번째 항은 coefficient들의 크기가 너무 커지지 않도록 막는다.
 
 ---
 
-### 3.1 Numerical example
+### 3.1 Why \(\ell_1\)-penalty?
+
+LASSO의 핵심은 $\ell_1$-penalty이다.
+
+$$
+\|\beta\|_1=|\beta_1|+\cdots+|\beta_d|
+$$
+
+이므로, 이 항은 coefficient들의 절댓값 합을 작게 만들려고 한다.
+
+$\lambda$가 클수록 coefficient들은 더 강하게 0 쪽으로 밀린다. 특히 $\ell_1$-penalty는 어떤 coefficient를 정확히 0으로 만드는 효과가 있다. 그래서 LASSO는 feature selection에 사용된다.
+
+예를 들어 $\beta_j=0$이 되면, $j$번째 feature는 예측에 사용되지 않는 것과 같다. 따라서 LASSO는 regression을 하면서 동시에 중요한 feature만 남기는 역할을 할 수 있다.
+
+다만 이 글의 목적은 LASSO를 푸는 것이 아니라, LASSO가 QP 형태로 바뀐다는 것을 확인하는 것이다.
+
+---
+
+### 3.2 LASSO as QP
+
+LASSO가 QP처럼 바로 보이지 않는 이유는 absolute value가 들어 있기 때문이다.
+
+$$
+|\beta_j|
+$$
+
+는 그대로는 quadratic function도 아니고 linear function도 아니다. 하지만 auxiliary variable을 도입하면 absolute value를 linear constraint로 표현할 수 있다.
+
+새로운 변수 $s_j$를 도입해서
+
+$$
+s_j\ge |\beta_j|
+$$
+
+가 되도록 하자.
+
+이 조건은 다음 두 조건과 같다.
+
+$$
+s_j\ge \beta_j,
+$$
+
+$$
+s_j\ge -\beta_j.
+$$
+
+따라서 $\|\beta\|_1$에 등장하는 absolute value는 선형제약으로 표현할 수 있다.
+
+즉,
+
+$$
+|\beta_1|+\cdots+|\beta_d|
+$$
+
+를 직접 다루는 대신, auxiliary variable $s_1,\dots,s_d$를 도입하고 목적함수에
+
+$$
+s_1+\cdots+s_d
+$$
+
+를 넣으면 된다.
+
+이제 LASSO는 다음과 같이 쓸 수 있다.
+
+$$
+\begin{aligned}
+\text{minimize} \quad
+& \frac1n\|y-X\beta\|_2^2+\lambda\sum_{j=1}^d s_j\\
+\text{subject to} \quad
+& s_j\ge \beta_j,
+\quad j=1,\dots,d,\\
+& s_j\ge -\beta_j,
+\quad j=1,\dots,d.
+\end{aligned}
+$$
+
+여기서 least squares term $\|y-X\beta\|_2^2$은 $\beta$에 대한 quadratic function이고, 제약조건은 모두 linear inequality이다. 따라서 LASSO는 QP이다.
+
+---
+
+### 3.3 Numerical example
 
 두 개의 feature가 있는 regression 문제를 보자.
 
@@ -872,7 +1127,13 @@ $$
 +0.5s_1+0.5s_2
 $$
 
-를 $\frac12 z^\top Qz+p^\top z$와 비교하면
+를
+
+$$
+\frac12 z^\top Qz+p^\top z
+$$
+
+와 비교하면
 
 $$
 Q=
@@ -956,42 +1217,3 @@ $$
 $$
 
 꼴로 표현된다.
-
----
-
-## 4. Summary
-
-이번 글에서는 QP의 일반형
-
-$$
-\begin{aligned}
-\text{minimize} \quad & \frac12 z^\top Qz+p^\top z\\
-\text{subject to} \quad & Az\ge b
-\end{aligned}
-$$
-
-을 살펴보고, 세 가지 예시가 이 형태로 표현된다는 것을 확인했다.
-
-| problem | optimization variable $z$ | quadratic term | linear constraints |
-|---|---|---|---|
-| portfolio optimization | $x$ | $x^\top\Sigma x$ | budget constraint, $x\ge0$ |
-| support vector machine | $(w,b,t_1,\dots,t_n)$ | $\|w\|_2^2$ | margin constraints, $t_i\ge0$ |
-| LASSO | $(\beta,s)$ | $\|y-X\beta\|_2^2$ | $s_j\ge|\beta_j|$ |
-
-세 문제는 겉으로는 서로 다른 문제처럼 보인다. Portfolio optimization은 금융 문제이고, SVM은 classification 문제이고, LASSO는 regression 문제이다.
-
-하지만 수학적으로 보면 모두 다음 구조를 가진다.
-
-$$
-\text{quadratic objective}
-$$
-
-와
-
-$$
-\text{linear constraints}.
-$$
-
-따라서 세 문제 모두 QP의 일반형으로 표현할 수 있다.
-
-끝으로 다만 이번 글에서는 QP를 어떻게 푸는지는 다루지 않았다. 여기서는 실제로 자주 등장하는 여러 문제들이 QP라는 하나의 optimization framework 안에 들어간다는 점만 확인했다.
