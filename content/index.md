@@ -39,6 +39,10 @@ For any inquiries or further communication, please feel free to contact me via e
   <div class="link-card-desc">This article provides a concise introduction to linear programming and the simplex method, covering standard-form transformations, dictionary-based pivot operations, two-phase initialization, and the diagnosis of infeasible and unbounded cases through detailed illustrative examples.</div>
 </a>
 
+<a class="link-card" href="./posts/Quadratic programming">
+  <div class="link-card-title"> Quadratic programming </div>
+  <div class="link-card-desc">This article provides a concise introduction about what is the quadratic programming is. It analyze some practical examples for quadratic programming with actual numerical examples.</div>
+</a>
 </div>
 
 </div>

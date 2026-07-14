@@ -3,6 +3,7 @@ title: Linear Programming과 Simplex Method
 tags:
   - math
   - optimization theory
+  - Type of optimization problems
   - linear programming(LP)
 ---
 
