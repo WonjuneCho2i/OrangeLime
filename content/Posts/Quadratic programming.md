@@ -843,7 +843,7 @@ $$
 
 ---
 
-### 3.1 Why \(\ell_1\)-penalty?
+### 3.1 Why L1 penalty?
 
 LASSO의 핵심은 $\ell_1$-penalty이다.
 
