@@ -270,7 +270,7 @@ $$
 ---
 ## 2. Example: support vector machine
 
-두 번째 예시는 support vector machine, 줄여서 SVM이라고 흔히 부른다.
+두 번째 예시는 support vector machine, 줄여서 SVM이다.
 
 SVM은 Data classification 문제에서 자주 등장한다. 데이터가 $(x_i,y_i)$, $i=1,\dots,n$으로 주어졌다고 하자. 여기서 $x_i$는 feature vector이고,
 
@@ -280,109 +280,309 @@ $$
 
 이다.
 
+즉, 각 데이터는 두 class 중 하나에 속한다. $y_i=1$이면 positive class, $y_i=-1$이면 negative class라고 생각할 수 있다.
+
+---
+
+### 2.1 Linear classifier and decision boundary
+
 선형 SVM에서는 다음과 같은 함수를 사용한다.
 
 $$
 f(x)=w^\top x-b.
 $$
 
-이때 decision boundary는
+여기서 $w$는 weight vector이고, $b$는 bias term이다.
 
-$$
-w^\top x-b=0
-$$
-
-이다. 즉, $w^\top x-b$의 부호에 따라 class를 나눈다.
+SVM은 $f(x)$의 부호를 보고 class를 분류한다.
 
 $$
 w^\top x-b\ge0
 $$
 
-이면 $+1$로 분류하고,
+이면 $+1$ class로 분류하고,
 
 $$
 w^\top x-b<0
 $$
 
-이면 $-1$로 분류한다.
+이면 $-1$ class로 분류한다.
+
+따라서 두 class를 나누는 경계는
+
+$$
+w^\top x-b=0
+$$
+
+이다.
+
+이 경계를 decision boundary라고 한다.
+
+예를 들어 2-dimensional data라면 decision boundary는 직선이고, 더 높은 차원에서는 hyperplane이 된다.
 
 ---
 
-### 2.1 Margin의 의미
+### 2.2 Margin boundary
 
-데이터 $(x_i,y_i)$가 올바르게 분류되었는지는
+SVM은 단순히 데이터를 올바르게 나누는 decision boundary만 찾는 것이 아니다.
 
-$$
-y_i(w^\top x_i-b)
-$$
+SVM은 decision boundary와 데이터 사이의 간격을 가능한 크게 만들고 싶어한다. 이 간격을 margin이라고 한다.
 
-를 보면 알 수 있다.
-
-만약 $y_i=1$이면 올바른 분류를 위해
+이를 위해 SVM에서는 decision boundary 양옆에 두 개의 margin boundary를 생각한다.
 
 $$
-w^\top x_i-b>0
+w^\top x-b=1
 $$
 
-이어야 한다. 이 경우
-
 $$
-y_i(w^\top x_i-b)>0
+w^\top x-b=-1
 $$
 
-이다.
-
-반대로 $y_i=-1$이면 올바른 분류를 위해
+즉, SVM에서는 다음 세 개의 평행한 hyperplane을 생각할 수 있다.
 
 $$
-w^\top x_i-b<0
+w^\top x-b=-1
 $$
 
-이어야 한다. 이때도
-
 $$
-y_i(w^\top x_i-b)>0
+w^\top x-b=0
 $$
 
-이다.
-
-따라서 두 경우 모두
-
 $$
-y_i(w^\top x_i-b)>0
+w^\top x-b=1
 $$
 
-이면 올바르게 분류된 것이다.
+가운데에 있는
 
-SVM은 여기서 한 단계 더 나아간다. 단순히 올바르게 분류하는 것뿐 아니라, decision boundary에서 충분히 멀리 떨어져 있기를 원한다. 이를 다음과 같이 표현한다.
+$$
+w^\top x-b=0
+$$
+
+이 실제 decision boundary이고, 양옆의 두 hyperplane
+
+$$
+w^\top x-b=1,
+\quad
+w^\top x-b=-1
+$$
+
+이 margin boundary이다.
+
+![SVM margin boundaries](/assets/svm_margin_boundaries_blog.png)
+
+이상적인 경우, $+1$ class의 데이터는 오른쪽 margin boundary 바깥에 있어야 한다. 즉,
+
+$$
+w^\top x_i-b\ge1
+$$
+
+을 만족해야 한다.
+
+반대로 $-1$ class의 데이터는 왼쪽 margin boundary 바깥에 있어야 한다. 즉,
+
+$$
+w^\top x_i-b\le -1
+$$
+
+을 만족해야 한다.
+
+이 두 조건은 하나의 식으로 합칠 수 있다.
 
 $$
 y_i(w^\top x_i-b)\ge1.
 $$
 
-이 값
+왜 그런지 확인해보자.
 
-$$
-y_i(w^\top x_i-b)
-$$
-
-을 margin이라고 생각할 수 있다.
-
-margin이 1 이상이면 충분히 안정적으로 분류된 것이고, margin이 1보다 작으면 decision boundary에 너무 가까이 있거나 잘못 분류된 것이다.
-
----
-
-### 2.2 Hinge loss가 나오는 이유
-
-이제 하나의 데이터가 margin 조건을 얼마나 위반하는지 측정하고 싶다.
-
-이상적으로는
+먼저 $y_i=1$이면,
 
 $$
 y_i(w^\top x_i-b)\ge1
 $$
 
-이면 된다. 이 경우에는 penalty를 줄 필요가 없다.
+은
+
+$$
+w^\top x_i-b\ge1
+$$
+
+이 된다.
+
+즉, positive class의 데이터가 오른쪽 margin boundary 바깥에 있다는 뜻이다.
+
+반대로 $y_i=-1$이면,
+
+$$
+y_i(w^\top x_i-b)\ge1
+$$
+
+은
+
+$$
+-(w^\top x_i-b)\ge1
+$$
+
+이므로
+
+$$
+w^\top x_i-b\le -1
+$$
+
+이 된다.
+
+즉, negative class의 데이터가 왼쪽 margin boundary 바깥에 있다는 뜻이다.
+
+따라서 조건
+
+$$
+y_i(w^\top x_i-b)\ge1
+$$
+
+은 각 데이터가 자기 class 쪽 margin boundary 바깥에 있기를 요구하는 조건이다.
+
+---
+
+### 2.3 Why does SVM minimize $\|w\|_2^2$?
+
+이제 margin의 폭을 생각해보자.
+
+일반적으로 두 평행한 hyperplane
+
+$$
+w^\top x=c_1
+$$
+
+과
+
+$$
+w^\top x=c_2
+$$
+
+사이의 거리는
+
+$$
+\frac{|c_1-c_2|}{\|w\|_2}
+$$
+
+이다.
+
+SVM의 decision boundary는
+
+$$
+w^\top x-b=0
+$$
+
+이고, 오른쪽 margin boundary는
+
+$$
+w^\top x-b=1
+$$
+
+이다.
+
+이 둘 사이의 거리는
+
+$$
+\frac{|1-0|}{\|w\|_2}
+=
+\frac{1}{\|w\|_2}
+$$
+
+이다.
+
+마찬가지로 decision boundary와 왼쪽 margin boundary
+
+$$
+w^\top x-b=-1
+$$
+
+사이의 거리도
+
+$$
+\frac{1}{\|w\|_2}
+$$
+
+이다.
+
+따라서 두 margin boundary 사이의 전체 폭은
+
+$$
+\frac{2}{\|w\|_2}
+$$
+
+이다.
+
+SVM은 margin을 크게 만들고 싶다. 즉,
+
+$$
+\frac{2}{\|w\|_2}
+$$
+
+를 크게 만들고 싶다.
+
+이는 곧
+
+$$
+\|w\|_2
+$$
+
+를 작게 만드는 것과 같다.
+
+그래서 SVM의 목적함수에는
+
+$$
+\lambda\|w\|_2^2
+$$
+
+라는 term이 들어간다.
+
+여기서 $\lambda>0$는 margin을 크게 만드는 것을 얼마나 중요하게 볼 것인지 조절하는 parameter이다.
+
+정리하면,
+
+$$
+\text{large margin}
+\quad\Longleftrightarrow\quad
+\frac{2}{\|w\|_2}\text{ is large}
+\quad\Longleftrightarrow\quad
+\|w\|_2\text{ is small}.
+$$
+
+따라서 SVM은 $\|w\|_2^2$를 작게 만드는 방향으로 classifier를 찾는다.
+
+---
+
+### 2.4 Soft-margin SVM
+
+지금까지의 설명은 모든 데이터가 margin boundary 바깥에 잘 놓여 있다고 가정한 것이다.
+
+즉, 모든 데이터가
+
+$$
+y_i(w^\top x_i-b)\ge1
+$$
+
+을 만족한다고 생각했다.
+
+하지만 실제 데이터에서는 이런 조건을 완벽하게 만족하기 어려울 수 있다. 데이터에 noise가 있거나, 두 class가 완전히 분리되지 않을 수도 있다.
+
+그래서 soft-margin SVM은 margin 조건을 어느 정도 위반하는 것을 허용한다. 대신 위반한 만큼 penalty를 준다.
+
+각 데이터의 margin은
+
+$$
+y_i(w^\top x_i-b)
+$$
+
+이다.
+
+만약
+
+$$
+y_i(w^\top x_i-b)\ge1
+$$
+
+이면 margin 조건을 만족하므로 penalty가 없다.
 
 반대로
 
@@ -390,7 +590,7 @@ $$
 y_i(w^\top x_i-b)<1
 $$
 
-이면 margin이 부족하다. 이때 부족한 정도는
+이면 margin이 부족하다. 부족한 정도는
 
 $$
 1-y_i(w^\top x_i-b)
@@ -398,7 +598,7 @@ $$
 
 이다.
 
-따라서 하나의 데이터에 대한 loss를 다음과 같이 정의할 수 있다.
+따라서 하나의 데이터에 대한 penalty를 다음과 같이 정의한다.
 
 $$
 \max\{0,1-y_i(w^\top x_i-b)\}.
@@ -406,31 +606,15 @@ $$
 
 이것이 hinge loss이다.
 
-margin이 1 이상이면
+margin이 1 이상이면 hinge loss는 0이다. 이미 충분히 잘 분류되었기 때문이다.
 
-$$
-1-y_i(w^\top x_i-b)\le0
-$$
+반대로 margin이 1보다 작으면 hinge loss는 양수가 된다. 즉, margin을 충분히 확보하지 못한 만큼 penalty가 생긴다.
 
-이므로 hinge loss는 0이다. 즉, 이미 충분히 잘 분류되었으므로 penalty를 주지 않는다.
+결국 soft-margin SVM은 다음 두 가지를 동시에 고려한다.
 
-반면 margin이 1보다 작으면 hinge loss는 양수가 되고, margin이 부족한 만큼 penalty가 생긴다.
+첫째, margin을 크게 만들기 위해 $\|w\|_2^2$를 작게 만든다.
 
----
-
-### 2.3 Soft-margin SVM
-
-Soft-margin SVM은 다음 두 가지를 동시에 고려한다.
-
-첫째, margin이 큰 단순한 classifier를 만들고 싶다. 이를 위해 regularization term
-
-$$
-\lambda\|w\|_2^2
-$$
-
-을 사용한다.
-
-둘째, 각 데이터가 margin 조건을 위반하면 penalty를 주고 싶다. 이를 위해 hinge loss를 더한다.
+둘째, margin 조건을 위반한 데이터에 대해서는 hinge loss로 penalty를 준다.
 
 따라서 soft-margin SVM은 다음 optimization problem으로 표현된다.
 
@@ -441,9 +625,41 @@ $$
 \max\{0,1-y_i(w^\top x_i-b)\}.
 $$
 
-첫 번째 항 $\lambda\|w\|_2^2$는 quadratic term이다. 두 번째 항은 각 데이터의 hinge loss 평균이다.
+첫 번째 항
 
-하지만 이 식은 max가 들어 있으므로 아직 QP 일반형처럼 보이지 않는다. 이를 QP로 바꾸기 위해 auxiliary variable $t_1,\dots,t_n$을 도입한다.
+$$
+\lambda\|w\|_2^2
+$$
+
+은 large margin을 만들기 위한 regularization term이다.
+
+두 번째 항
+
+$$
+\frac1n\sum_{i=1}^n
+\max\{0,1-y_i(w^\top x_i-b)\}
+$$
+
+은 margin violation에 대한 평균 penalty이다.
+
+---
+
+### 2.5 SVM as QP
+
+이제 위 SVM 문제가 왜 QP인지 보자.
+
+soft-margin SVM은
+
+$$
+\min_{w,b}
+\lambda \|w\|_2^2+
+\frac1n\sum_{i=1}^n
+\max\{0,1-y_i(w^\top x_i-b)\}
+$$
+
+이다.
+
+이 식은 max가 들어 있기 때문에 바로 QP 일반형처럼 보이지 않는다. 이를 QP로 바꾸기 위해 auxiliary variable $t_1,\dots,t_n$을 도입한다.
 
 각 $t_i$가 $i$번째 데이터의 hinge loss를 대신한다고 생각하자. 즉,
 
@@ -483,7 +699,9 @@ $$
 y_i x_i^\top w-y_i b+t_i\ge1
 $$
 
-이다. 따라서
+이다.
+
+따라서 SVM은
 
 $$
 \begin{aligned}
@@ -497,13 +715,15 @@ $$
 \end{aligned}
 $$
 
-이 된다.
+가 된다.
 
-목적함수에는 $\lambda\|w\|_2^2$라는 quadratic term이 있고, 제약조건은 모두 $w,b,t_i$에 대한 linear inequality이다. 따라서 SVM은 QP이다.
+목적함수에는 $\lambda\|w\|_2^2$라는 quadratic term이 있고, 제약조건은 모두 $w,b,t_i$에 대한 linear inequality이다.
+
+따라서 SVM은 QP이다.
 
 ---
 
-### 2.4 Numerical example
+### 2.6 Numerical example
 
 간단하게 1-dimensional data 5개를 보자.
 
@@ -525,7 +745,9 @@ $$
 f(x)=wx-b
 $$
 
-이고, $\lambda=0.1$이라고 하자. 그러면 SVM 문제는
+이고, $\lambda=0.1$이라고 하자.
+
+그러면 SVM 문제는
 
 $$
 \min_{w,b}
@@ -623,7 +845,9 @@ $$
 0.1w^2+\frac15(t_1+t_2+t_3+t_4+t_5)
 $$
 
-이다. QP 일반형의 목적함수
+이다.
+
+QP 일반형의 목적함수
 
 $$
 \frac12 z^\top Qz+p^\top z
@@ -643,7 +867,9 @@ $$
 Q_{11}=0.2
 $$
 
-이다. 나머지 변수에 대한 quadratic term은 없으므로
+이다.
+
+나머지 변수에 대한 quadratic term은 없으므로
 
 $$
 Q=
@@ -658,7 +884,13 @@ Q=
 \end{bmatrix}.
 $$
 
-linear term은 $\frac15(t_1+t_2+t_3+t_4+t_5)$이므로
+linear term은
+
+$$
+\frac15(t_1+t_2+t_3+t_4+t_5)
+$$
+
+이므로
 
 $$
 p=
