@@ -43,6 +43,11 @@ For any inquiries or further communication, please feel free to contact me via e
   <div class="link-card-title"> Quadratic programming </div>
   <div class="link-card-desc">This article provides a concise introduction about what is the quadratic programming is. It analyze some practical examples for quadratic programming with actual numerical examples.</div>
 </a>
+
+<a class="link-card" href="./posts/generating-functions">
+  <div class="link-card-title"> Generating functions </div>
+  <div class="link-card-desc">This article provide some numerical ideas related to generating function ,starting from elementary ideas.</div>
+</a>
 </div>
 
 </div>
