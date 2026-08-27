@@ -685,3 +685,582 @@ C_n=\frac{1}{n+1}\binom{2n}{n}
 $$
 
 까지 얻을 수 있다.
+
+# Euler의 오각수 정리: 분할의 상쇄와 Generating Function
+
+앞에서 자연수 \(n\)의 분할 개수를 \(p(n)\)이라고 하고, 그 Generating Function이
+
+$$
+P(x)
+=
+\sum_{n=0}^{\infty}p(n)x^n
+=
+\prod_{k=1}^{\infty}\frac{1}{1-x^k}
+$$
+
+로 주어진다는 사실을 살펴보았다.
+
+이번에는 이 함수의 역수,
+
+$$
+\frac{1}{P(x)}
+=
+\prod_{k=1}^{\infty}(1-x^k)
+$$
+
+에 주목해 보자. 얼핏 보면 모든 차수의 항이 복잡하게 섞인 무한곱처럼 보이지만, 놀랍게도 이 곱은 매우 희소한 형태로 전개된다.
+
+$$
+\prod_{k=1}^{\infty}(1-x^k)
+=
+1-x-x^2+x^5+x^7-x^{12}-x^{15}+x^{22}+x^{26}-\cdots
+$$
+
+즉, 대부분의 차수에서는 계수가 \(0\)이고, 특정한 지수에서만 \(1\) 또는 \(-1\)이 남는다. 이 지수들은
+
+$$
+\frac{m(3m-1)}{2},
+\qquad
+\frac{m(3m+1)}{2}
+$$
+
+꼴이며, 이를 **일반화된 오각수(generalized pentagonal numbers)** 라고 한다.
+
+이 항등식이 바로 **Euler의 오각수 정리**이다.
+
+$$
+\prod_{k=1}^{\infty}(1-x^k)
+=
+\sum_{m=-\infty}^{\infty}
+(-1)^m x^{m(3m-1)/2}
+$$
+
+> 왜 수없이 많은 항이 섞여 있는 무한곱에서 대부분의 계수가 사라지고, 일반화된 오각수 차수에서만 계수가 남을까?
+
+이 질문의 답은 \(\prod_{k=1}^{\infty}(1-x^k)\)을 서로 다른 부분으로의 분할로 해석하고, 그 분할들을 서로 상쇄시키는 Franklin involution에 있다.
+
+## \(\prod_{k=1}^{\infty}(1-x^k)\)의 조합론적 의미
+
+각 인수
+
+$$
+1-x^k
+$$
+
+에서는 두 항 중 하나를 고른다.
+
+- \(1\)을 고르면 \(k\)를 사용하지 않는 것이다.
+- \(-x^k\)를 고르면 \(k\)를 정확히 한 번 사용하는 것이다.
+
+따라서
+
+$$
+\prod_{k=1}^{\infty}(1-x^k)
+$$
+
+를 전개할 때 \(x^n\)이 만들어지는 하나의 방법은 \(n\)을 **서로 다른 자연수의 합**으로 나타내는 하나의 분할에 대응한다.
+
+예를 들어 \(x^5\)를 만드는 서로 다른 부분으로의 분할은
+
+$$
+5,\qquad 4+1,\qquad 3+2
+$$
+
+이다. 각각에 대응하는 항은 다음과 같다.
+
+$$
+5
+\quad\longleftrightarrow\quad
+-x^5
+$$
+
+$$
+4+1
+\quad\longleftrightarrow\quad
+(-x^4)(-x)=+x^5
+$$
+
+$$
+3+2
+\quad\longleftrightarrow\quad
+(-x^3)(-x^2)=+x^5
+$$
+
+따라서 \(x^5\)의 계수는
+
+$$
+-1+1+1=1
+$$
+
+이다.
+
+일반적으로 서로 다른 수 \(r\)개를 사용한 분할은 \(-x^k\)를 \(r\)번 고른 것이므로 부호
+
+$$
+(-1)^r
+$$
+
+를 갖는다. 즉,
+
+$$
+[x^n]\prod_{k=1}^{\infty}(1-x^k)
+$$
+
+는 \(n\)을 서로 다른 자연수의 합으로 분할하는 방법들을 세되,
+
+- 사용한 항의 개수가 짝수이면 \(+1\),
+- 사용한 항의 개수가 홀수이면 \(-1\)
+
+을 부여하여 모두 더한 값이다.
+
+예를 들어 \(6\)의 서로 다른 부분으로의 분할은
+
+$$
+6,\qquad 5+1,\qquad 4+2,\qquad 3+2+1
+$$
+
+이다. 부호를 고려하면
+
+$$
+-1+1+1-1=0
+$$
+
+이므로 \(x^6\)의 계수는 \(0\)이다.
+
+그렇다면 일반적으로도 짝수 개의 항을 쓰는 분할과 홀수 개의 항을 쓰는 분할이 서로 짝지어질 수 있을까? 그리고 짝지어지지 않는 예외는 왜 일반화된 오각수에서만 나타날까?
+
+## Franklin involution
+
+서로 다른 자연수의 합으로 이루어진 분할을 큰 수부터 적어
+
+$$
+\lambda=(\lambda_1>\lambda_2>\cdots>\lambda_\ell)
+$$
+
+라고 하자.
+
+여기서 두 수를 정의한다.
+
+$$
+r=\lambda_\ell
+$$
+
+는 가장 작은 항의 크기이고,
+
+$$
+s
+$$
+
+는 맨 앞에서부터 \(1\)씩 연속해서 감소하는 항의 개수이다.
+
+예를 들어
+
+$$
+\lambda=(9,8,7,4)
+$$
+
+에서는
+
+$$
+9,8,7
+$$
+
+이 연속해서 \(1\)씩 감소하므로
+
+$$
+s=3
+$$
+
+이고, 가장 작은 항은 \(4\)이므로
+
+$$
+r=4
+$$
+
+이다.
+
+Franklin involution은 분할의 합은 보존하면서, 항의 개수를 정확히 하나 늘리거나 줄이는 조작이다.
+
+### 가장 작은 항을 위쪽으로 흡수하기
+
+가장 작은 항 \(r\)을 제거하고, 그 \(r\)개의 단위를 위쪽의 처음 \(r\)개 항에 하나씩 더한다.
+
+예를 들어
+
+$$
+(8,7,6,3)
+$$
+
+을 생각하자. 이 분할에서는
+
+$$
+s=3,\qquad r=3
+$$
+
+이다. 맨 아래의 \(3\)을 제거하고, 그 세 단위를 위 세 항에 하나씩 더하면
+
+$$
+(8,7,6,3)
+\longrightarrow
+(9,8,7)
+$$
+
+이 된다.
+
+합은 보존된다.
+
+$$
+8+7+6+3=24
+$$
+
+$$
+9+8+7=24
+$$
+
+하지만 항의 개수는 \(4\)개에서 \(3\)개로 줄었다. 따라서 두 분할이 만드는 항의 부호는 반대이다.
+
+$$
+(-1)^4=+1,
+\qquad
+(-1)^3=-1
+$$
+
+### 위쪽 계단에서 새 항 만들기
+
+반대로 맨 앞의 연속된 \(s\)개 항에서 하나씩 빼고, 그렇게 떼어 낸 \(s\)개의 단위로 새로운 항 \(s\)를 만든다.
+
+예를 들어
+
+$$
+(9,8,7,4)
+$$
+
+에서는 \(s=3\)이다. 맨 앞 세 항에서 각각 하나씩 빼면
+
+$$
+(9,8,7,4)
+\longrightarrow
+(8,7,6,4)
+$$
+
+가 된다. 떼어 낸 단위는 모두 세 개이므로 새로운 항 \(3\)을 붙인다.
+
+$$
+(9,8,7,4)
+\longrightarrow
+(8,7,6,4,3)
+$$
+
+역시 합은 보존된다.
+
+$$
+9+8+7+4=28
+$$
+
+$$
+8+7+6+4+3=28
+$$
+
+이번에는 항의 개수가 \(4\)개에서 \(5\)개로 늘어났다. 따라서 부호가 바뀐다.
+
+이 두 조작은 서로 역연산이다.
+
+$$
+(9,8,7,4)
+\longleftrightarrow
+(8,7,6,4,3)
+$$
+
+한 번 변환한 뒤 다시 변환하면 원래 분할로 돌아온다. 그래서 이 변환을 involution이라고 부른다.
+
+결국 대부분의 서로 다른 부분으로의 분할은 다음처럼 짝지어진다.
+
+$$
+\text{짝수 개 항의 분할}
+\longleftrightarrow
+\text{홀수 개 항의 분할}
+$$
+
+두 분할은 같은 \(x^n\)에 기여하지만 부호가 반대이므로 서로 상쇄된다.
+
+## 왜 오각수에서만 상쇄가 실패하는가?
+
+Franklin involution이 실패하는 예외는 정확히 두 종류다.
+
+첫 번째는
+
+$$
+(2m-1,2m-2,\ldots,m)
+$$
+
+꼴의 분할이다.
+
+예를 들면,
+
+$$
+(1),\qquad (3,2),\qquad (5,4,3),\qquad (7,6,5,4),\ldots
+$$
+
+이다. 이 분할의 합은
+
+$$
+m+(m+1)+\cdots+(2m-1)
+=
+\frac{m(3m-1)}{2}
+$$
+
+이다.
+
+두 번째는
+
+$$
+(2m,2m-1,\ldots,m+1)
+$$
+
+꼴의 분할이다.
+
+예를 들면,
+
+$$
+(2),\qquad (4,3),\qquad (6,5,4),\qquad (8,7,6,5),\ldots
+$$
+
+이다. 이 분할의 합은
+
+$$
+(m+1)+(m+2)+\cdots+2m
+=
+\frac{m(3m+1)}{2}
+$$
+
+이다.
+
+이 두 종류는 전체가 정확한 계단 모양을 이루고 있어, 위의 두 조작 모두 허용되는 서로 다른 부분으로의 분할을 만들지 못한다.
+
+예를 들어
+
+$$
+(3,2)
+$$
+
+에서 위 두 항에서 각각 한 칸씩 떼어 새로운 항을 만들려고 하면,
+
+$$
+(3,2)
+\longrightarrow
+(2,1,2)
+$$
+
+가 된다. 이를 크기순으로 정리하면
+
+$$
+(2,2,1)
+$$
+
+인데, \(2\)가 중복된다. 따라서 이는 서로 다른 부분으로의 분할이 아니다.
+
+반대 방향도 불가능하다. 맨 아래의 \(2\)를 제거한 뒤 그 두 단위를 서로 다른 위쪽 행들에 하나씩 나누어 주려 해도, 실제로 남아 있는 위쪽 행은 하나뿐이다.
+
+따라서
+
+$$
+(3,2)
+$$
+
+는 짝을 찾지 못하고 남는다. 이 분할은 두 항을 사용하므로 부호는
+
+$$
+(-1)^2=+1
+$$
+
+이며, 실제로 \(x^5\)의 계수는 \(+1\)이다.
+
+마찬가지로
+
+$$
+(5,4,3)
+$$
+
+은 합이 \(12\)인 예외 분할이다. 세 항을 사용하므로
+
+$$
+(-1)^3=-1
+$$
+
+을 남기고, 따라서 \(x^{12}\)의 계수는 \(-1\)이 된다.
+
+이처럼 상쇄되지 않고 남는 분할들의 합이 정확히
+
+$$
+\frac{m(3m-1)}{2},
+\qquad
+\frac{m(3m+1)}{2}
+$$
+
+꼴이므로, 일반화된 오각수 차수에서만 계수가 남는다.
+
+## 오각수 정리는 왜 중요한가?
+
+오각수 정리는 분할수 \(p(n)\)를 계산하는 점화식을 만든다.
+
+분할수의 Generating Function과 Euler의 오각수 정리를 곱하면,
+
+$$
+\left(
+\sum_{n=0}^{\infty}p(n)x^n
+\right)
+\left(
+1-x-x^2+x^5+x^7-x^{12}-x^{15}+\cdots
+\right)
+=
+1
+$$
+
+을 얻는다.
+
+\(n>0\)일 때 \(x^n\)의 계수는 \(0\)이어야 하므로,
+
+$$
+p(n)-p(n-1)-p(n-2)+p(n-5)+p(n-7)-\cdots=0
+$$
+
+이다. 따라서
+
+$$
+p(n)
+=
+p(n-1)+p(n-2)-p(n-5)-p(n-7)+p(n-12)+p(n-15)-\cdots
+$$
+
+라는 점화식을 얻는다.
+
+일반식으로는 다음과 같다.
+
+$$
+p(n)
+=
+\sum_{m=1}^{\infty}
+(-1)^{m+1}
+\left[
+p\left(n-\frac{m(3m-1)}{2}\right)
++
+p\left(n-\frac{m(3m+1)}{2}\right)
+\right]
+$$
+
+단,
+
+$$
+p(0)=1,
+\qquad
+p(n)=0\quad(n<0)
+$$
+
+으로 약속한다.
+
+예를 들어 \(p(8)\)을 구해 보자. \(8\) 이하의 일반화된 오각수는
+
+$$
+1,2,5,7
+$$
+
+이므로,
+
+$$
+p(8)=p(7)+p(6)-p(3)-p(1)
+$$
+
+이다. 이미 알고 있는 값
+
+$$
+p(7)=15,\qquad p(6)=11,\qquad p(3)=3,\qquad p(1)=1
+$$
+
+을 대입하면,
+
+$$
+p(8)=15+11-3-1=22
+$$
+
+를 얻는다.
+
+즉, 오각수 정리는 다음과 같은 흐름을 보여 준다.
+
+$$
+\text{분할의 Generating Function}
+\longrightarrow
+\text{희소한 역수}
+\longrightarrow
+\text{분할수의 점화식}
+$$
+
+분할의 정의만으로 \(p(n)\)을 구하려면 모든 분할을 직접 세어야 할 것처럼 보인다. 그러나 Euler의 오각수 정리는 일반화된 오각수만큼 이전으로 이동한 항들만 이용해 \(p(n)\)을 계산할 수 있게 해 준다.
+
+더 나아가 이 무한곱은 Dedekind eta 함수와 modular form의 이론으로 이어지고, Ramanujan이 발견한 분할수의 합동식과도 연결된다. 대표적으로,
+
+$$
+p(5n+4)\equiv0\pmod 5
+$$
+
+가 성립한다.
+
+실제로,
+
+$$
+p(4)=5,\qquad p(9)=30,\qquad p(14)=135
+$$
+
+는 모두 \(5\)의 배수이다.
+
+Euler의 오각수 정리는 Generating Function이 단지 수열을 기록하는 표기법이 아니라, 조합적 대상 사이의 상쇄 구조를 드러내고 새로운 점화식과 정수론적 성질까지 이끌어 내는 도구임을 보여 주는 대표적인 사례이다.
+
+## References
+
+### Generating Functions 전반
+
+- Herbert S. Wilf, [*generatingfunctionology*](https://www.sciencedirect.com/book/9780127519555/generatingfunctionology).  
+  Generating Function의 기본 연산, 점화식, 계수 추출을 폭넓게 다루는 고전적인 입문서.
+
+- Richard P. Stanley, *Enumerative Combinatorics, Volume 1*, 2nd ed., Cambridge University Press.  
+  Catalan 수열, 분할, 조합론적 Generating Function을 더 엄밀하게 공부하기 좋은 참고서.
+
+### 단위원근 필터와 조합론적 활용
+
+- 3Blue1Brown, [*Olympiad level counting (Generating functions)*](https://www.youtube.com/watch?v=bOXCLR3Wric).  
+  이항계수, Generating Function, 단위원근 필터를 활용해 “합이 특정 수의 배수인 부분집합”을 세는 과정을 직관적으로 설명한다.
+
+- 3Blue1Brown, [*Olympiad level counting (Generating functions)* 수업 페이지](https://www.3blue1brown.com/lessons/subsets-puzzle/).
+
+### 자연수 분할과 Euler의 오각수 정리
+
+- F. Franklin, [*Franklin’s Proof of Euler’s Pentagonal Number Theorem*](https://garsia.math.yorku.ca/~zabrocki/math5020fw1516/documents/PeulersPNT.pdf).  
+  오각수 정리와 Franklin involution을 통해 서로 다른 부분으로의 분할이 어떻게 상쇄되는지 설명한다.
+
+- MIT OpenCourseWare, [*Franklin’s combinatorial proof of Euler’s pentagonal number theorem*](https://ocw.mit.edu/courses/18-212-algebraic-combinatorics-spring-2019/resources/mit18_212s19_lec21/).  
+  Ferrers diagram을 이용한 Franklin involution의 시각적 설명과 분할 이론의 맥락을 제공한다.
+
+- George E. Andrews, *The Theory of Partitions*, Cambridge University Press, 1998.  
+  자연수 분할과 \(q\)-series 이론의 대표적인 참고서.
+
+### 분할수의 점화식, 점근식, 합동식
+
+- G. H. Hardy and S. Ramanujan, [*Asymptotic Formulae in Combinatory Analysis*](https://londmathsoc.onlinelibrary.wiley.com/doi/pdf/10.1112/plms/s2-17.1.75), *Proceedings of the London Mathematical Society*, 1918.  
+  분할수 \(p(n)\)의 유명한 Hardy--Ramanujan 점근식을 다룬 원 논문.
+
+- Srinivasa Ramanujan, [*Congruence Properties of Partitions*](https://ramanujan.sirinudi.org/Volumes/published/ram30.html), *Mathematische Zeitschrift*, 1921.  
+  다음과 같은 Ramanujan의 분할수 합동식이 등장하는 원전이다.
+
+  $$
+  p(5n+4)\equiv0\pmod 5
+  $$
+
+  $$
+  p(7n+5)\equiv0\pmod 7
+  $$
+
+  $$
+  p(11n+6)\equiv0\pmod{11}
+  $$
+
+- NIST Digital Library of Mathematical Functions, [Unrestricted Partitions](https://dlmf.nist.gov/27.14).  
+  분할수의 Generating Function, 점화식, Ramanujan 합동식 등을 간결하게 확인할 수 있는 신뢰도 높은 참고 자료.
