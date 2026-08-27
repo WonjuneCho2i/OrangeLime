@@ -2,36 +2,36 @@
 title: Home
 ---
 
-Hello, I am Wonjune Choi.
-Thank you for visiting my homepage. This website serves as a personal archive of my academic journey, learning experiences, and selected reflections. It is intended to share my ongoing studies, interests, and thoughts in a structured and professional manner.
-For any inquiries or further communication, please feel free to contact me via e-mail: **[wjchoi1229@snu.ac.kr](mailto:wjchoi1229@snu.ac.kr)**.
+<section class="home-hero">
+  <div class="hero-copy">
+    <p class="hero-eyebrow">PERSONAL KNOWLEDGE ARCHIVE / 2026</p>
+    <p class="hero-title">Wonjune<br />Choi's <em>Blog.</em></p>
+    <p class="hero-summary">Hello, I am Wonjune Choi. Thank you for visiting my homepage. This website serves as a personal archive of my academic journey, learning experiences, and selected reflections.</p>
+    <a class="hero-contact" href="mailto:wjchoi1229@snu.ac.kr">wjchoi1229@snu.ac.kr <span>↗</span></a>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <img class="hero-photo" src="./static/orange-tree-hero.png" alt="" />
+  </div>
+</section>
 
+<section class="intro-card">
+  <div class="section-heading">
+    <span>01</span>
+    <h2>About writer</h2>
+  </div>
+  <div class="about-grid">
+    <p><strong>Pharmacy</strong><br />College of Pharmacy, Seoul National University<br /><small>2024.03 —</small></p>
+    <p><strong>Mathematics</strong><br />College of Mathematics, Seoul National University<br /><small>2025.09 —</small></p>
+    <p><strong>Focus</strong><br />Optimization theory, pharmacodynamics, drug molecular design.</p>
+    <p><strong>Off the clock</strong><br />Arsenal FC and the Mercedes-AMG Petronas Formula One Team.</p>
+  </div>
+</section>
 
-<div class="intro-card">
-
-## About writer
-
-<p class="intro-text">
-- Majoring in Pharmacy, College of Pharmacy, Seoul National University(2024.03~) 
-</p>
-
-<p class="intro-text">
-- Submajoring in Mathematics, College of Mathematics, Seoul National University(2025.09~)
-</p>
-
-<p class="intro-text">
-- Interest: optimization theory, Pharmacodynamics, drug molecular design etc.
-</p>
-
-<p class="intro-text">
-- Big fan of Arsenal FC and the Mercedes-AMG Petronas Formula One Team.
-</p>
-
-</div>
-
-<div class="section-card">
-
-## Recent Posts
+<section class="section-card">
+  <div class="section-heading">
+    <span>02</span>
+    <h2>Recent posts</h2>
+  </div>
 
 <div class="link-card-list">
 <a class="link-card" href="./posts/linear-programming-simplex-method">
@@ -50,4 +50,4 @@ For any inquiries or further communication, please feel free to contact me via e
 </a>
 </div>
 
-</div>
+</section>
