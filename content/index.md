@@ -34,11 +34,6 @@ title: Home
   </div>
 
 <div class="link-card-list">
-<a class="link-card" href="./posts/linear-programming-simplex-method">
-  <div class="link-card-title"> Linear Programming과 Simplex Method </div>
-  <div class="link-card-desc">This article provides a concise introduction to linear programming and the simplex method, covering standard-form transformations, dictionary-based pivot operations, two-phase initialization, and the diagnosis of infeasible and unbounded cases through detailed illustrative examples.</div>
-</a>
-
 <a class="link-card" href="./posts/Quadratic programming">
   <div class="link-card-title"> Quadratic programming </div>
   <div class="link-card-desc">This article provides a concise introduction about what is the quadratic programming is. It analyze some practical examples for quadratic programming with actual numerical examples.</div>
@@ -48,6 +43,12 @@ title: Home
   <div class="link-card-title"> Generating functions </div>
   <div class="link-card-desc">This article provide some numerical ideas related to generating function ,starting from elementary ideas.</div>
 </a>
+
+<a class="link-card" href="./Posts/Linkage%20disequilibrium">
+  <div class="link-card-title">Linkage Disequilibrium</div>
+  <div class="link-card-desc">A brief note on linkage disequilibrium based on elementary statistics</div>
+</a>
+
 </div>
 
 </section>
