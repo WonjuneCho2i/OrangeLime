@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: plausible
   locale: en-US
-  baseUrl: WonjuneCho2i.github.io/OrangeLime
+  baseUrl: orangelime.cloud
   ignorePatterns:
     - private
     - templates
