@@ -37,12 +37,12 @@ date: 2026-09-20
 또 다른 한 축인 국회의사당 앞에서 근접의 구도를 잡고 사진을 많이 찍었던 것 같습니다. 놀랍게도 한국인만이 그 앞에서 삼십 분 내지는 한 시간 가까이 사진을 이리저리 찍는 것이 신기했습니다. 이곳에서 우리도 그 흐름에 합류해, 추운 날 오랫동안 서로 사진을 찍어주었던 기억이 나네요. 지금은 헤어진 당시 여자 친구와 이곳을 배경으로 영상통화를 하는데, 옆을 보니 다른 한국인 남성분 두 분도 여자 친구와 통화를 하는 모습을 보고 묘한 동질감을 느꼈던 기억도 있습니다. 저보다 먼저 시작하신 한 분은 우리가 숙소로 발걸음을 옮긴 뒤에도 계속, 그러니까 거의 두 시간을 장갑도 끼지 않고 통화하셨습니다. 그러한 수준의 한 대상을 위한 자발적 헌신을 경험하는 것 자체가 인생에서 큰 행운이라 생각합니다.
 
 <figure class="essay-single-image">
-  <img src="../../assets/Hungary/hungary3.jpg" alt="Hungary 3" />
+  <img src="../../assets/Hungary/hungary3.png" alt="Hungary 3" />
   <figcaption>3. 헝가리 국회의사당과 도나우 강을 찍다</figcaption>
 </figure>
 
 <figure class="essay-single-image">
-  <img src="../../assets/Hungary/hungary4.jpg" alt="Hungary 4" />
+  <img src="../../assets/Hungary/hungary4.png" alt="Hungary 4" />
   <figcaption>4. 헝가리 국회의사당과 도나우 강을 배경으로 찍다 </figcaption>
 </figure>
 
