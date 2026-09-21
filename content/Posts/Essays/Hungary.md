@@ -1,6 +1,8 @@
 ---
 title: Hungary
 date: 2026-09-20
+cssclasses:
+  - hungary-essay
 ---
 
 <div class="essay-prose">
