@@ -492,12 +492,13 @@ article a {
 
 .essay-prose {
   font-family: "Noto Serif KR", serif;
-  font-size: 1.05rem;
-  line-height: 2;
+  font-size: 1.08rem;
+  line-height: 2.15;
+  letter-spacing: -0.01em;
 }
 
 .essay-prose p {
+  margin-bottom: 1.7rem;
   text-align: justify;
   word-break: keep-all;
-  letter-spacing: -0.01em;
 }
