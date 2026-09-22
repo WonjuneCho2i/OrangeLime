@@ -578,16 +578,31 @@ article a {
   font-size: 0.9rem;
 }
 
-body:has(.share-only-essay) .sidebar,
-body:has(.share-only-essay) .graph,
-body:has(.share-only-essay) .toc,
-body:has(.share-only-essay) .backlinks {
-  display: none !important;
-}
+@media all and (min-width: 701px) {
+  body:has(.share-only-essay) .sidebar,
+  body:has(.share-only-essay) .graph,
+  body:has(.share-only-essay) .toc,
+  body:has(.share-only-essay) .backlinks {
+    display: none !important;
+  }
 
-body:has(.share-only-essay) article {
-  max-width: 820px;
-  margin: 0 auto;
+  body:has(.share-only-essay) .page {
+    grid-template-columns: minmax(0, 900px) !important;
+    justify-content: center !important;
+  }
+
+  body:has(.share-only-essay) .center {
+    grid-column: 1 !important;
+    width: 100% !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+  }
+
+  body:has(.share-only-essay) article {
+    width: 100% !important;
+    max-width: 820px !important;
+    margin: 0 auto !important;
+  }
 }
 
 body:has(.hungary-essay) .article-title {
@@ -596,3 +611,4 @@ body:has(.hungary-essay) .article-title {
   font-weight: 700;
   letter-spacing: -0.04em;
 }
+
