@@ -613,3 +613,44 @@ body:has(.hungary-essay) .article-title {
   letter-spacing: -0.04em;
 }
 
+@media all and (max-width: 700px) {
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  body:has(.hungary-essay) main,
+  body:has(.hungary-essay) article,
+  body:has(.hungary-essay) .popover-hint,
+  body:has(.hungary-essay) .content {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  body:has(.hungary-essay) .essay-prose {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+    font-size: 0.94rem;
+    line-height: 1.85;
+  }
+
+  body:has(.hungary-essay) .essay-prose p {
+    text-align: left !important;
+    word-break: normal;
+    overflow-wrap: anywhere;
+    margin-bottom: 1.8rem;
+  }
+
+  body:has(.hungary-essay) .essay-single-image img,
+  body:has(.hungary-essay) .essay-image-grid img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    box-sizing: border-box;
+  }
+}
