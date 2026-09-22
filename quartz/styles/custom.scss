@@ -586,22 +586,23 @@ article a {
     display: none !important;
   }
 
+  body:has(.share-only-essay) main {
+    width: min(820px, calc(100vw - 4rem)) !important;
+    max-width: 820px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body:has(.share-only-essay) article,
+  body:has(.share-only-essay) .popover-hint,
+  body:has(.share-only-essay) .content,
   body:has(.share-only-essay) .page {
-    grid-template-columns: minmax(0, 900px) !important;
-    justify-content: center !important;
-  }
-
-  body:has(.share-only-essay) .center {
-    grid-column: 1 !important;
-    width: 100% !important;
-    max-width: 900px !important;
-    margin: 0 auto !important;
-  }
-
-  body:has(.share-only-essay) article {
     width: 100% !important;
     max-width: 820px !important;
-    margin: 0 auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
