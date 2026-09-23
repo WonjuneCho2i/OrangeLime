@@ -1,5 +1,6 @@
 ---
 title: Perceptron
+date: 2026-05-26
 tags:
   - Deep Learning
   - 퍼셉트론

@@ -1,5 +1,6 @@
 ---
 title: Linear Programming과 Simplex Method
+date: 2026-06-22
 tags:
   - math
   - optimization theory

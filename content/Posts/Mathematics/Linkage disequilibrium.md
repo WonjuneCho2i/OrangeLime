@@ -1,5 +1,6 @@
 ---
 title: Linkage disequilibrium
+date: 2026-09-08
 tags:
   - genetics
   - population genetics

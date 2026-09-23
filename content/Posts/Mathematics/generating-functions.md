@@ -1,5 +1,6 @@
 ---
 title: Generating Functions
+date: 2026-07-04
 tags:
   - math
   - combinatorics

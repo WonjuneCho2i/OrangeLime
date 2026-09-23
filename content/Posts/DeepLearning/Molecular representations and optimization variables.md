@@ -1,5 +1,6 @@
 ---
 title: Molecular representations and optimization variables
+date: 2026-09-11
 tags:
   - math
   - molecular modeling
