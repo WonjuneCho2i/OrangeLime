@@ -615,13 +615,19 @@ body:has(.hungary-essay) .article-title {
 
 @media all and (max-width: 700px) {
   body:has(.hungary-essay) .essay-prose {
-    width: auto !important;
-    max-width: 100% !important;
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
     box-sizing: border-box !important;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+
     font-size: 0.92rem;
-    line-height: 1.85;
+    line-height: 1.95;
   }
 
   body:has(.hungary-essay) .essay-prose p {
@@ -634,7 +640,10 @@ body:has(.hungary-essay) .article-title {
 
   body:has(.hungary-essay) .essay-single-image,
   body:has(.hungary-essay) .essay-image-grid {
-    max-width: 100% !important;
+    width: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     box-sizing: border-box !important;
   }
 
@@ -643,21 +652,6 @@ body:has(.hungary-essay) .article-title {
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
-    box-sizing: border-box !important;
-  }
-}
-
-@media all and (max-width: 700px) {
-  body:has(.hungary-essay) .essay-prose {
-    width: auto !important;
-    max-width: none !important;
-
-    margin-left: 1rem !important;
-    margin-right: 1rem !important;
-
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-
     box-sizing: border-box !important;
   }
 }
