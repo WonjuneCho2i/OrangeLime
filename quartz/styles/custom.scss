@@ -616,14 +616,12 @@ body:has(.hungary-essay) .article-title {
 @media all and (max-width: 700px) {
   body:has(.hungary-essay) .essay-prose {
     width: calc(100vw - 2rem) !important;
-    max-width: calc(100vw - 2rem) !important;
+    max-width: none !important;
 
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-left: calc(50% - 50vw + 1rem) !important;
+    margin-right: 0 !important;
 
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-
+    padding: 0 !important;
     box-sizing: border-box !important;
 
     font-size: 0.92rem;
@@ -641,9 +639,9 @@ body:has(.hungary-essay) .article-title {
   body:has(.hungary-essay) .essay-single-image,
   body:has(.hungary-essay) .essay-image-grid {
     width: calc(100vw - 2rem) !important;
-    max-width: calc(100vw - 2rem) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    max-width: none !important;
+    margin-left: calc(50% - 50vw + 1rem) !important;
+    margin-right: 0 !important;
     box-sizing: border-box !important;
   }
 
@@ -652,6 +650,5 @@ body:has(.hungary-essay) .article-title {
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
-    box-sizing: border-box !important;
   }
 }
