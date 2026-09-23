@@ -5,7 +5,8 @@ configuration:
   enableSPA: true
   enablePopovers: true
   analytics:
-    provider: plausible
+    provider: google
+    tagId: G-48L1GCGDJT
   locale: en-US
   baseUrl: orangelime.cloud
   ignorePatterns:
