@@ -652,3 +652,11 @@ body:has(.hungary-essay) .article-title {
     height: auto !important;
   }
 }
+
+@media all and (max-width: 700px) {
+  body:has(.hungary-essay) .essay-prose,
+  body:has(.hungary-essay) .essay-single-image,
+  body:has(.hungary-essay) .essay-image-grid {
+    transform: translateX(-1rem) !important;
+  }
+}
