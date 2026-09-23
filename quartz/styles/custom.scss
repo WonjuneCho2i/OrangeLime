@@ -678,3 +678,18 @@ body:has(.hungary-essay) .article-title {
     pointer-events: none !important;
   }
 }
+
+@media all and (max-width: 700px) {
+  .section-card .link-card-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section-card .link-card {
+    min-height: auto !important;
+    padding: 1.25rem 1.2rem 1.4rem;
+  }
+
+  .section-card .link-card::before {
+    margin-bottom: 1rem;
+  }
+}
