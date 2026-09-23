@@ -652,3 +652,29 @@ body:has(.hungary-essay) .article-title {
     height: auto !important;
   }
 }
+
+/* Fix mobile Explorer stacking/click problem */
+@media all and (max-width: 800px) {
+  /* Explorer drawer를 홈 화면보다 무조건 위로 */
+  .page > #quartz-body .sidebar.left:has(.explorer) {
+    z-index: 10000 !important;
+    isolation: isolate;
+  }
+
+  .page > #quartz-body .sidebar.left:has(.explorer) .explorer,
+  .page > #quartz-body .sidebar.left:has(.explorer) .explorer-content {
+    position: relative;
+    z-index: 10001 !important;
+    pointer-events: auto !important;
+  }
+
+  /* 홈 Hero가 Explorer 위로 튀어나오지 않도록 */
+  .home-hero .hero-copy {
+    z-index: 0 !important;
+  }
+
+  /* Explorer가 열린 동안 뒤쪽 홈 화면이 클릭을 가로채지 않도록 */
+  .page > #quartz-body.lock-scroll > :not(.sidebar.left:has(.explorer)) {
+    pointer-events: none !important;
+  }
+}
