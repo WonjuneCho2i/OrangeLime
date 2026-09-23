@@ -625,10 +625,11 @@ body:has(.hungary-essay) .article-title {
   }
 
   body:has(.hungary-essay) .essay-prose p {
-    text-align: left !important;
-    word-break: keep-all;
+    text-align: justify !important;
+    word-break: normal;
     overflow-wrap: break-word;
-    margin-bottom: 1.8rem;
+    line-height: 1.95;
+    margin-bottom: 2rem;
   }
 
   body:has(.hungary-essay) .essay-single-image,
